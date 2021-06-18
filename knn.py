@@ -10,12 +10,15 @@ d_max = 10
 
 def main():
     v = 10
-    k = 4
+    k = 3
+
     grafo_knn(v, k)
-    rota = list(range(v))
-    coordenadas = np.array(lista_vertices)
-    print(rota)
-    print(coordenadas)
+
+    #rota = list(range(v))
+    #print(rota)
+
+    #coordenadas = np.array(lista_vertices)
+    #print(coordenadas)
     # plota_resultado(rota, coordenadas)
 
 
@@ -26,12 +29,20 @@ def grafo_knn(v, k):
         if new  not in lista_vertices:
             lista_vertices.append(new)
 
+    print("\nLista de vértices:")
     print(lista_vertices)
 
     # TODO: gera matrix KNN de distâncias
-    A = kneighbors_graph(lista_vertices, 2, mode='distance', include_self=False)
+    A = kneighbors_graph(lista_vertices, k, mode='distance', include_self=False)
     array = A.toarray()
     g = nx.Graph()
+
+    print("\nMatriz resultante:")
+    print(A)
+
+    print("\nArray:")
+    print(array)
+    coordenadas = np.array(lista_vertices)
 
     for x in range(len(array)):
         for y in range(len(array[x])):
@@ -40,10 +51,6 @@ def grafo_knn(v, k):
 
     nx.draw_networkx(g,alpha=0.6,node_size=70,font_size=5)
     plt.show()
-
-    print(A)
-    print(array)
-    coordenadas = np.array(lista_vertices)
 
     # plota_resultado(array, coordenadas)
 
