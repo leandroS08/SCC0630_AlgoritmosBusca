@@ -5,14 +5,13 @@ import networkx as nx
 import numpy as np
 
 lista_vertices = []
-d_max = 10 #Limite das coordenadas x e y
+d_max = 100 #Limite das coordenadas x e y
 
 def main():
-    v = 10
-    k = 3
+    v = 5
+    k = 2
 
     m = grafo_knn(v, k)
-
     rota = list(range(v))
 
     print("\nRota:")
@@ -35,12 +34,24 @@ def grafo_knn(v, k):
 
     # NOTE: gera matrix KNN de distâncias com vétices 
     A = kneighbors_graph(lista_vertices, k, mode='distance', include_self=False)
+    print(type(A))
     array = A.toarray()
     
     print("\nMatriz resultante:")
     print(A)
 
     print("\nArray:")
+    print(array)
+
+    for i in range(v):
+        for j in range(v):
+            if array[i][j] != array[j][i]:
+                if array[i][j] == 0:
+                    array[i][j] = array[j][i] 
+                else:
+                    array[j][i] = array[i][j]
+
+    print("\nNovo Array:")
     print(array)
 
     return array
@@ -55,14 +66,24 @@ def plota_grafo(array):
                 g.add_edge(str(x),str(y),weight=array[x][y])
 
     # NOTE: Dicionário {chave: índice do vetor lista_vertices, valor: coordenadas do ponto}
-    pos ={str(index):value for index,value in enumerate(np.array(lista_vertices))}
+    pos ={str(index):value for index,value in enumerate(lista_vertices)}
+
+    print(pos)
+
+    f = open("pos.txt", "w")
+    f.write(str(pos))
+    f.close()
+
+    file = open("graph.txt", "w")
+    np.savetxt('graph.txt', array, fmt='%.8f')
+    file.close()
 
     print("\Mapa [índice, coordenada]:")
     print(pos)
     fig = plt.figure(facecolor="w")
 
     ax = fig.add_subplot(111)
-    nx.draw_networkx(g,alpha=0.6,node_size=30, with_labels=False,pos= pos, font_size=8, edge_color="b", ax=ax)
+    nx.draw_networkx(g,alpha=0.6,node_size=30, with_labels=True,pos= pos, font_size=8, edge_color="b", ax=ax)
 
     #Adicionado para printar eixos x e y
     ax.tick_params(left=True, bottom=True, labelleft=True, labelbottom=True)
