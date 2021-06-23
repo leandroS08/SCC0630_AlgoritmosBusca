@@ -9,20 +9,20 @@ def grafo_knn_fixo(arg):
 
     if arg == 1:
         v = 9
-        k = 3
+        k = 2
 
         v1 = 0
         v2 = 5
 
         lista_vertices.append([0,0])
         lista_vertices.append([0,2])
-        lista_vertices.append([0,4])
+        lista_vertices.append([0,6])
         lista_vertices.append([2,0])
         lista_vertices.append([2,2])
-        lista_vertices.append([2,4])
+        lista_vertices.append([2,6])
         lista_vertices.append([4,0])
         lista_vertices.append([4,2])
-        lista_vertices.append([4,4])
+        lista_vertices.append([4,6])
 
         M = kneighbors_graph(lista_vertices, k, mode='distance', include_self=False)
 

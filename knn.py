@@ -3,11 +3,11 @@ from busca_largura import *
 
 def main():
 
-    #lista_vertices, v, k, v1, v2, M = grafo_knn_fixo(1)
+    lista_vertices, v, k, v1, v2, M = grafo_knn_fixo(1)
 
-    v = 10
-    k = 3
-    lista_vertices, v1, v2, M = grafo_knn_aleatorio(v, k)
+    #v = 10
+    #k = 3
+    #lista_vertices, v1, v2, M = grafo_knn_aleatorio(v, k)
 
     print("\nMatriz:")
     print (M)
