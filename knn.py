@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import random
 import networkx as nx
 import numpy as np
+from busca_largura import *
 
 lista_vertices = []
 d_max = 10 #Limite das coordenadas x e y
