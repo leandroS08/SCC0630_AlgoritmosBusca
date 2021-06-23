@@ -1,9 +1,4 @@
 def busca_largura(M, v1, v2):
-    print("\n Matriz:")
-    print (M)
-
-    print("\n Vertices: (", v1, "  ", v2, ")")
-
     fila = []
     visitados = [ 0 for i in range(len(M)) ]
     rotas = [ [] for i in range(len(M))]
