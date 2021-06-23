@@ -66,7 +66,7 @@ def plota_grafo(array, lista_vertices):
     fig = plt.figure(facecolor="w")
 
     ax = fig.add_subplot(111)
-    nx.draw_networkx(g,alpha=0.6,node_size=30, with_labels=False,pos= pos, font_size=8, edge_color="b", ax=ax)
+    nx.draw_networkx(g,alpha=0.6,node_size=30, with_labels=True,pos= pos, font_size=8, edge_color="b", ax=ax)
 
     #Adicionado para printar eixos x e y
     ax.tick_params(left=True, bottom=True, labelleft=True, labelbottom=True)
