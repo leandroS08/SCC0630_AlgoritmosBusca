@@ -25,6 +25,7 @@ def grafo_knn_fixo(arg):
         lista_vertices.append([4,6])
 
         M = kneighbors_graph(lista_vertices, k, mode='distance', include_self=False)
+        print(M)
 
         return lista_vertices, v, k, v1, v2, M.toarray()
 

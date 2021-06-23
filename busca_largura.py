@@ -9,8 +9,8 @@ def busca_largura(M, v1, v2):
     visitados[v1] = 1
 
     while len(fila) > 0:
-        print("\n Fila:")
-        print(fila)
+        #print("\n Fila:")
+        #print(fila)
 
         vertice = fila.pop(0)
 
@@ -27,24 +27,22 @@ def busca_largura(M, v1, v2):
             
             linha_aux.sort(key=lambda tup: tup[1])
             
-            print("\nLinha:")
-            print(linha_aux)   
+            #print("\nLinha:")
+            #print(linha_aux)   
 
             for i in range(len(M)):
                 if(linha_aux[i][1] != 0):
-                    print("i ", i)
                     j = linha_aux[i][0]
-                    print("j", j)
                     if(visitados[j] == 0):
                         visitados[j] = 1
                         rotas[j] = rotas[vertice].copy()
                         rotas[j].append(j)
                         fila.append(j)
 
-        print("\n Visitas:")
-        print(visitados)
+        #print("\n Visitas:")
+        #print(visitados)
 
-        print("\n Rotas:") 
-        print(rotas)
+        #print("\n Rotas:") 
+        #print(rotas)
 
     return rotas[v2]
