@@ -9,7 +9,7 @@ def grafo_knn_fixo(arg):
 
     if arg == 1:
         v = 9
-        k = 2
+        k = 3
 
         v1 = 0
         v2 = 5

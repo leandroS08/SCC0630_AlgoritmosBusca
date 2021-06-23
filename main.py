@@ -19,10 +19,10 @@ def main():
     #print("\nRota:")
     #print(rota)
 
-    rota1 = busca_largura(M, v1, v2)
+    #rota1 = busca_largura(M, v1, v2)
     rota2 = busca_largura(M, v1, v2)
 
-    print("\nRota (busca em largura):", rota1)
+    #print("\nRota (busca em largura):", rota1)
     print("Rota (algoritmo A):", rota2)
 
     plota_grafo(M, lista_vertices)
