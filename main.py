@@ -3,15 +3,17 @@ from busca_largura import *
 from algoritmo_a import *
 
 def main():
+    v = 5
+    k = 2
 
-    lista_vertices, v, k, v1, v2, M = grafo_knn_fixo(1)
-
-    #v = 10
-    #k = 3
-    #lista_vertices, v1, v2, M = grafo_knn_aleatorio(v, k)
+    gera_grafo_knn(v, k)
+    pos, M = le_grafo_knn()
 
     print("\nMatriz:")
     print (M)
+
+    v1 = 0
+    v2 = len(M) - 1 
 
     print("\nVertice origem:", v1, " || Vertice destino ", v2)
 
@@ -25,6 +27,6 @@ def main():
     #print("\nRota (busca em largura):", rota1)
     print("Rota (algoritmo A):", rota2)
 
-    plota_grafo(M, lista_vertices)
+    plota_grafo(M, pos, rota2)
 
 main()
