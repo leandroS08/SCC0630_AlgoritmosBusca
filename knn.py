@@ -1,6 +1,5 @@
-from busca_largura import *
 from grafos import *
-
+from busca_largura import *
 
 def main():
 
