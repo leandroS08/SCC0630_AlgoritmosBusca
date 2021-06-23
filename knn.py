@@ -14,15 +14,17 @@ def main():
 
     m = grafo_knn(v, k)
 
-    rota = list(range(v))
-
-    print("\nRota:")
-    print(rota)
+    #rota = list(range(v))
+    #print("\nRota:")
+    #print(rota)
 
     plota_grafo(m)
 
-    #coordenadas = np.array(lista_vertices)
-    #print(coordenadas)
+    v_1 = 0
+    v_2 = v-1
+
+    rota1 = busca_largura(m, v_1, v_2)
+
 
 def grafo_knn(v, k):
     # NOTE: gera vertices a partir do input V
