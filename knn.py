@@ -4,51 +4,62 @@ import random
 import networkx as nx
 import numpy as np
 from busca_largura import *
+from grafos_fixos import *
 
-lista_vertices = []
+
 d_max = 10 #Limite das coordenadas x e y
 
 def main():
-    v = 10
-    k = 3
+    #v = 5
+    #k = 3
+    #lista_vertices, m = grafo_knn(v, k)
 
-    m = grafo_knn(v, k)
+    lista_vertices, v, k, M = grafos_fixos(1)
+
+    print("\n Matriz:")
+    print (M)
+
+    v_1 = 0
+    v_2 = 5
+
+    print("\n Vertices: (", v_1, "  ", v_2, ")")
 
     #rota = list(range(v))
     #print("\nRota:")
     #print(rota)
 
-    plota_grafo(m)
+    rota1 = busca_largura(M, v_1, v_2)
 
-    v_1 = 0
-    v_2 = v-1
+    print("\n Rota:", rota1)
 
-    rota1 = busca_largura(m, v_1, v_2)
+    plota_grafo(M, lista_vertices)
 
 
 def grafo_knn(v, k):
+    lista_vertices = []
+
     # NOTE: gera vertices a partir do input V
     while len(lista_vertices) < v:
         new = ([random.randint(0, d_max), random.randint(0, d_max)])
         if new  not in lista_vertices:
             lista_vertices.append(new)
 
-    print("\nLista de vértices:")
-    print(lista_vertices)
+    #print("\nLista de vértices:")
+    #print(lista_vertices)
 
     # NOTE: gera matrix KNN de distâncias com vétices 
     A = kneighbors_graph(lista_vertices, k, mode='distance', include_self=False)
     array = A.toarray()
     
-    print("\nMatriz resultante:")
-    print(A)
+    #print("\nMatriz resultante:")
+    #print(A)
 
-    print("\nArray:")
-    print(array)
+    #print("\nArray:")
+    #print(array)
 
-    return array
+    return lista_vertices, array
 
-def plota_grafo(array):
+def plota_grafo(array, lista_vertices):
     g = nx.Graph()
 
     # NOTE: mapeia as arestas para plotar
@@ -60,8 +71,8 @@ def plota_grafo(array):
     # NOTE: Dicionário {chave: índice do vetor lista_vertices, valor: coordenadas do ponto}
     pos ={str(index):value for index,value in enumerate(np.array(lista_vertices))}
 
-    print("\Mapa [índice, coordenada]:")
-    print(pos)
+    #print("\Mapa [índice, coordenada]:")
+    #print(pos)
     fig = plt.figure(facecolor="w")
 
     ax = fig.add_subplot(111)
