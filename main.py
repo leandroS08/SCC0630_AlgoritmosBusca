@@ -24,18 +24,18 @@ def main():
     #print("\nRota:")
     #print(rota)
 
-    rota1 = busca_profundidade(M, v1, v2)
-    rota2 = busca_largura(M, v1, v2)
-    rota3 = busca_largura_otimizado(M, v1, v2)
-    #rota4 = algoritmo_a(M, v1, v2)
+    #rota1 = busca_profundidade(M, v1, v2)
+    #print("\nRota (busca em profundidade):", rota1)
 
-    #NOTE: Busca em profundidade
-    
-    print("\nRota (busca em profundidade):", rota1)
-    print("\nRota (busca em largura):", rota2)
-    print("\nRota (busca em largura otimizado):", rota3)
-    #print("Rota (algoritmo A):", rota)
+    #rota2 = busca_largura(M, v1, v2)
+    #print("\nRota (busca em largura):", rota2)
 
-    plota_grafo(M, pos, rota3)
+    #rota3 = busca_largura_otimizado(M, v1, v2)
+    #print("\nRota (busca em largura otimizado):", rota3)
+
+    rota4 = algoritmo_a(M, pos, v1, v2)
+    print("\nRota (algoritmo A):", rota4)
+
+    #plota_grafo(M, pos, rota4)
 
 main()

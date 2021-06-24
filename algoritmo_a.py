@@ -1,5 +1,23 @@
-def algoritmo_a(M, v1, v2):
-    fila = []
+import math
+import numpy as np
+from collections import defaultdict
+
+def algoritmo_a(M, pos, v1, v2):
+    f = [ 0 for i in range(len(M)) ]
+    g = [ 0 for i in range(len(M)) ]
+    h = [ 0 for i in range(len(M)) ]
+    pai = []
+    visitados = []
+    nvisitados = []
+
+    print("\nCoisa de posição:")
+    print (pos)
+    item = pos[0]
+    print (item)
+    #for i in range(len(M)):
+    #    h[i] = math.dist(v1, )
+
+    '''fila = []
     visitados = [ 0 for i in range(len(M)) ]
     rotas = [ [] for i in range(len(M))]
     for i in range(len(M)):
@@ -45,4 +63,6 @@ def algoritmo_a(M, v1, v2):
         #print("\n Rotas:") 
         #print(rotas)
 
-    return rotas[v2]
+    return rotas[v2]'''
+
+    return 0
