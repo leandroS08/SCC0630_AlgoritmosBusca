@@ -20,7 +20,7 @@ def le_grafo_knn():
     return pos, matrix
 
 def gera_grafo_knn(v, k):
-    d_max = 10 #Limite das coordenadas x e y
+    d_max = 1000 #Limite das coordenadas x e y
     v1 = 0
     v2 = v-1
 
@@ -58,23 +58,34 @@ def gera_grafo_knn(v, k):
     np.savetxt('graph.txt', matrix, fmt='%.8f')
     file.close()
 
-def plota_grafo(array, pos, rota):
+def plota_grafo(matrix, pos, rota):
     g = nx.Graph()
+    r = nx.Graph()
+    n = nx.Graph()
 
     # NOTE: mapeia as arestas para plotar
-    for x in range(len(array)):
-        for y in range(len(array[x])):
-            if array[x][y] != 0.0:
-                g.add_edge(str(x),str(y),weight=array[x][y])
+    for x in range(len(matrix)):
+        for y in range(len(matrix[x])):
+            if matrix[x][y] != 0.0:
+                g.add_edge(str(x),str(y),weight=matrix[x][y])
 
-    #print("\Mapa [índice, coordenada]:")
-    #print(pos)
+    # NOTE: grafo com nós da rota
+    for i in range(len(rota)-1):
+        r.add_edge(str(rota[i]),str(rota[i+1]),weight=matrix[rota[i]][rota[i+1]])
+
+    n.add_node(str(rota[0]))
+    n.add_node(str(rota[-1]))
+
     fig = plt.figure(facecolor="w")
 
     ax = fig.add_subplot(111)
-    nx.draw_networkx(g,alpha=0.6,node_size=30, with_labels=True,pos= pos, font_size=8, edge_color="b", ax=ax)
 
-    #TODO: plotar rota
+    #NOTE: plota grafo
+    nx.draw_networkx(g,alpha=0.6,node_size=10, with_labels=False,pos= pos, font_size=8, edge_color="b", ax=ax, width = 1)
+    #NOTE: plota rota
+    nx.draw_networkx(r,alpha=0.6,node_size=20, with_labels=False,pos= pos, font_size=8, node_color="r", edge_color="r", ax=ax, width = 3)
+    #NOTE: plota ponto de inĩcio e fim
+    nx.draw_networkx(n,alpha=0.6,node_size=70, with_labels=True,pos= pos, node_color="g", font_size=10, ax=ax, width = 3)
 
     #Adicionado para printar eixos x e y
     ax.tick_params(left=True, bottom=True, labelleft=True, labelbottom=True)
