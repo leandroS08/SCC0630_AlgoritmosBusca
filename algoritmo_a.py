@@ -1,68 +1,62 @@
 import math
+from matplotlib.pyplot import flag
 import numpy as np
 from collections import defaultdict
 
 def algoritmo_a(M, pos, v1, v2):
     f = [ 0 for i in range(len(M)) ]
+    novo_f = 0
     g = [ 0 for i in range(len(M)) ]
     h = [ 0 for i in range(len(M)) ]
-    pai = []
-    visitados = []
-    nvisitados = []
+    pai = [ -1 for i in range(len(M)) ]
+    abertos = []
+    fechados = []
 
-    print("\nCoisa de posição:")
-    print (pos)
-    item = pos[0]
-    print (item)
-    #for i in range(len(M)):
-    #    h[i] = math.dist(v1, )
+    #print("\nCoisa de posição:")
+    #print (pos)
+    #item = pos[0]
+    #print (item)
 
-    '''fila = []
-    visitados = [ 0 for i in range(len(M)) ]
-    rotas = [ [] for i in range(len(M))]
-    for i in range(len(M)):
-        rotas[i].append(v1)
+    f[v1] = g[v1] + h[v1]
 
-    fila.append(v1)
-    visitados[v1] = 1
+    abertos.append(v1)
 
-    while len(fila) > 0:
-        #print("\n Fila:")
-        #print(fila)
+    flag = False
 
-        vertice = fila.pop(0)
+    while len(abertos) > 0 and flag == False:
+        i_melhor =  0
+        for i in range(len(M)):
+            if(f[i_melhor] < f[i]):
+                i_melhor = i
 
-        if(M[vertice][v2] != 0):
-            visitados[v2] = 1
-            rotas[v2] = rotas[vertice].copy()
-            rotas[v2].append(v2)
-            fila.append(v2)
-            break
-        else:
-            linha_aux = []
-            for i in range(len(M)):
-                linha_aux.append([i, M[vertice][i]])
-            
-            linha_aux.sort(key=lambda tup: tup[1])
-            
-            #print("\nLinha:")
-            #print(linha_aux)   
+        v = abertos[i_melhor]
 
-            for i in range(len(M)):
-                if(linha_aux[i][1] != 0):
-                    j = linha_aux[i][0]
-                    if(visitados[j] == 0):
-                        visitados[j] = 1
-                        rotas[j] = rotas[vertice].copy()
-                        rotas[j].append(j)
-                        fila.append(j)
+        print("\nPai:")
+        print(pai)
 
-        #print("\n Visitas:")
-        #print(visitados)
+        if (v == v2):
+            flag = True
+    
+        for u in range(len(M)):
+            if(M[v][u] != 0):
+                novo_f = g[v] + M[v][u] + h[u]
+                
+                if( (u in abertos or u in fechados) and (novo_f >= f[u])):
+                    continue
+                else:
+                    pai[u] = v
+                    g[u] = g[v] + M[v][u]
+                    f[u] = novo_f
 
-        #print("\n Rotas:") 
-        #print(rotas)
+                    if u in fechados:
+                        fechados.remove(u)
+                    if u in abertos:
+                        abertos.remove(u)
+                    abertos.append(u)
+        fechados.append(u)
 
-    return rotas[v2]'''
+    print("\nPai:")
+    print(pai)
 
     return 0
+
