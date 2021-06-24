@@ -5,12 +5,18 @@ from algoritmo_a import *
 
 def main():
     v = 10
-    k = 5
+    k = 3
 
-    #gera_grafo_knn(v, k)
+    gera_grafo_knn(v, k)
 
     #NOTE: Lê grafo predefinidos armazenados em arquivos
     pos, M = le_grafo_knn()
+
+    lista_vertices = [0]*len(pos)
+
+    for key, value in pos.items():
+        lista_vertices[int(key)] = value
+    print(lista_vertices)
 
     print("\nMatriz:")
     print (M)
@@ -24,18 +30,16 @@ def main():
     #print("\nRota:")
     #print(rota)
 
-    #rota1 = busca_profundidade(M, v1, v2)
-    #print("\nRota (busca em profundidade):", rota1)
-
+    #rota1 = busca_largura(M, v1, v2)
     #rota2 = busca_largura(M, v1, v2)
-    #print("\nRota (busca em largura):", rota2)
 
-    #rota3 = busca_largura_otimizado(M, v1, v2)
-    #print("\nRota (busca em largura otimizado):", rota3)
+    #NOTE: Busca em profundidade
+    rota = busca_profundidade(M, v1, v2)
+    print("\nRota (busca em profundidade):", rota)
 
-    rota4 = algoritmo_a(M, pos, v1, v2)
-    print("\nRota (algoritmo A):", rota4)
+    #print("\nRota (busca em largura):", rota1)
+    #print("Rota (algoritmo A):", rota)
 
-    #plota_grafo(M, pos, rota4)
+    plota_grafo(M, pos, rota)
 
 main()
