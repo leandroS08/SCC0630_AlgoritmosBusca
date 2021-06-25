@@ -8,7 +8,7 @@ def main():
     v = 100
     k = 3
 
-    gera_grafo_knn(v, k)
+    #gera_grafo_knn(v, k)
 
     #NOTE: Lê grafo predefinidos armazenados em arquivos
     pos, M = le_grafo_knn()
@@ -67,5 +67,7 @@ def main():
     plota_grafo(M, pos, rota4, 4)
 
     plt.show()
+
+    return 0
 
 main()
