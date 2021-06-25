@@ -3,7 +3,7 @@ from matplotlib.pyplot import flag
 import numpy as np
 from collections import defaultdict
 
-def algoritmo_a(M, pos, v1, v2):
+def algoritmo_a(M, vertices, v1, v2):
     f = [ 0 for i in range(len(M)) ]
     novo_f = 0
     g = [ 0 for i in range(len(M)) ]
@@ -11,11 +11,10 @@ def algoritmo_a(M, pos, v1, v2):
     pai = [ -1 for i in range(len(M)) ]
     abertos = []
     fechados = []
+    rota = []
 
-    #print("\nCoisa de posição:")
-    #print (pos)
-    #item = pos[0]
-    #print (item)
+    for i in range(len(M)):
+        h[i] = np.sqrt(pow(vertices[v2][0]-vertices[i][0],2)+pow(vertices[v2][1]-vertices[i][1],2))
 
     f[v1] = g[v1] + h[v1]
 
@@ -24,15 +23,15 @@ def algoritmo_a(M, pos, v1, v2):
     flag = False
 
     while len(abertos) > 0 and flag == False:
-        i_melhor =  0
-        for i in range(len(M)):
-            if(f[i_melhor] < f[i]):
-                i_melhor = i
+        #print("oi")
+        i_melhor =  abertos[0]
+        for i in range(len(abertos)):
+            if(f[i_melhor] > f[abertos[i]]):
+                i_melhor = abertos[i]
 
-        v = abertos[i_melhor]
+        v = i_melhor
 
-        print("\nPai:")
-        print(pai)
+        rota.append(v)
 
         if (v == v2):
             flag = True
@@ -47,16 +46,13 @@ def algoritmo_a(M, pos, v1, v2):
                     pai[u] = v
                     g[u] = g[v] + M[v][u]
                     f[u] = novo_f
-
-                    if u in fechados:
-                        fechados.remove(u)
-                    if u in abertos:
-                        abertos.remove(u)
                     abertos.append(u)
-        fechados.append(u)
+        
+        abertos.remove(v)
+        fechados.append(v)
 
-    print("\nPai:")
-    print(pai)
+    #print("\nPai:")
+    #print(pai)
 
-    return 0
+    return rota
 

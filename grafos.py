@@ -12,7 +12,7 @@ def le_grafo_knn():
     contents = file.read()
     pos = eval(contents)
     file.close()
-    print(pos)
+    #print(pos)
 
     matrix = np.loadtxt('graph.txt', dtype=np.float32)
     matrix = matrix.tolist()
@@ -58,7 +58,7 @@ def gera_grafo_knn(v, k):
     np.savetxt('graph.txt', matrix, fmt='%.8f')
     file.close()
 
-def plota_grafo(matrix, pos, rota):
+def plota_grafo(matrix, pos, rota, index):
     g = nx.Graph()
     r = nx.Graph()
     n = nx.Graph()
@@ -90,4 +90,14 @@ def plota_grafo(matrix, pos, rota):
     #Adicionado para printar eixos x e y
     ax.tick_params(left=True, bottom=True, labelleft=True, labelbottom=True)
     #ax.grid()
-    plt.show()
+    
+    plt.figure(index)
+
+def dist_rota(M, rota):
+    distancia = 0
+    if(rota is not np.empty):
+        for i in range(len(rota)-1):
+            distancia += M[rota[i]][rota[i+1]]
+        return distancia
+    else:
+        return -1

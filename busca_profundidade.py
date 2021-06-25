@@ -15,7 +15,7 @@ def DFS(lista, visitados, inicio, fim, rota):
     visitados[inicio] = 1
 
     if inicio == fim:
-        print(rota)
+        #print(rota)
         return rota
     else:
         for v in lista[inicio]:
