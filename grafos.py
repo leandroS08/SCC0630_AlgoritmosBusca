@@ -20,7 +20,7 @@ def le_grafo_knn():
     return pos, matrix
 
 def gera_grafo_knn(v, k):
-    d_max = 1000 #Limite das coordenadas x e y
+    d_max = v #Limite das coordenadas x e y
     v1 = 0
     v2 = v-1
 
@@ -58,7 +58,7 @@ def gera_grafo_knn(v, k):
     np.savetxt('graph.txt', matrix, fmt='%.8f')
     file.close()
 
-def plota_grafo(matrix, pos, rota, index):
+def plota_grafo(matrix, pos, rota, inicio, fim, index):
     g = nx.Graph()
     r = nx.Graph()
     n = nx.Graph()
@@ -73,8 +73,8 @@ def plota_grafo(matrix, pos, rota, index):
     for i in range(len(rota)-1):
         r.add_edge(str(rota[i]),str(rota[i+1]),weight=matrix[rota[i]][rota[i+1]])
 
-    n.add_node(str(rota[0]))
-    n.add_node(str(rota[-1]))
+    n.add_node(str(inicio))
+    n.add_node(str(fim))
 
     fig = plt.figure(facecolor="w")
 
