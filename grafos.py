@@ -21,8 +21,6 @@ def le_grafo_knn():
 
 def gera_grafo_knn(v, k):
     d_max = v #Limite das coordenadas x e y
-    v1 = 0
-    v2 = v-1
 
     lista_vertices = []
 
