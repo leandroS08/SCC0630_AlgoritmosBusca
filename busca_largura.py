@@ -1,12 +1,12 @@
-def busca_largura(M, v1, v2):
+def busca_largura(M, inicio, fim):
     fila = []
     visitados = [ 0 for i in range(len(M)) ]
     rotas = [ [] for i in range(len(M))]
     for i in range(len(M)):
-        rotas[i].append(v1)
+        rotas[i].append(inicio)
 
-    fila.append(v1)
-    visitados[v1] = 1
+    fila.append(inicio)
+    visitados[inicio] = 1
 
     while len(fila) > 0:
         #print("\n Fila:")
@@ -14,11 +14,11 @@ def busca_largura(M, v1, v2):
 
         vertice = fila.pop(0)
 
-        if(M[vertice][v2] != 0):
-            visitados[v2] = 1
-            rotas[v2] = rotas[vertice].copy()
-            rotas[v2].append(v2)
-            fila.append(v2)
+        if(M[vertice][fim] != 0):
+            visitados[fim] = 1
+            rotas[fim] = rotas[vertice].copy()
+            rotas[fim].append(fim)
+            fila.append(fim)
             break
         else:
             for i in range(len(M)):
@@ -35,18 +35,18 @@ def busca_largura(M, v1, v2):
         #print("\n Rotas:") 
         #print(rotas)
 
-    return rotas[v2]
+    return rotas[fim]
 
 
-def busca_largura_otimizado(M, v1, v2):
+def busca_largura_otimizado(M, inicio, fim):
     fila = []
     visitados = [ 0 for i in range(len(M)) ]
     rotas = [ [] for i in range(len(M))]
     for i in range(len(M)):
-        rotas[i].append(v1)
+        rotas[i].append(inicio)
 
-    fila.append(v1)
-    visitados[v1] = 1
+    fila.append(inicio)
+    visitados[inicio] = 1
 
     while len(fila) > 0:
         #print("\n Fila:")
@@ -54,11 +54,11 @@ def busca_largura_otimizado(M, v1, v2):
 
         vertice = fila.pop(0)
 
-        if(M[vertice][v2] != 0):
-            visitados[v2] = 1
-            rotas[v2] = rotas[vertice].copy()
-            rotas[v2].append(v2)
-            fila.append(v2)
+        if(M[vertice][fim] != 0):
+            visitados[fim] = 1
+            rotas[fim] = rotas[vertice].copy()
+            rotas[fim].append(fim)
+            fila.append(fim)
             break
         else:
             linha_aux = []
@@ -85,4 +85,4 @@ def busca_largura_otimizado(M, v1, v2):
         #print("\n Rotas:") 
         #print(rotas)
 
-    return rotas[v2]
+    return rotas[fim]
