@@ -28,8 +28,8 @@ def cria_rota(sucessores, inicio, fim):
         rota.append(atual)
         atual = sucessores[atual]
     rota.append(inicio)
-    print("Rota")
-    print(rota[::-1])
+    #print("Rota")
+    #print(rota[::-1])
     return rota[::-1]
 
 def busca_a_estrela(matriz, inicio, fim, lista_vertices, pos):

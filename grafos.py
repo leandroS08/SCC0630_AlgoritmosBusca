@@ -5,21 +5,24 @@ import networkx as nx
 import numpy as np
 from collections import defaultdict
 
-def le_grafo_knn():
-    file = open("pos.txt", "r")
-    f = open("graph.txt", "r")
+def le_grafo_knn(indice):
+    nome1 = "pos_" + str(indice) + ".txt"
+    file1 = open(nome1, "r")
+    nome2 = "grafo_" + str(indice) + ".txt"
+    file2 = open(nome2, "r")
 
-    contents = file.read()
+    contents = file1.read()
     pos = eval(contents)
-    file.close()
+    file1.close()
     #print(pos)
 
-    matrix = np.loadtxt('graph.txt', dtype=np.float32)
+    matrix = np.loadtxt(file2, dtype=np.float32)
     matrix = matrix.tolist()
+    file2.close()
 
     return pos, matrix
 
-def gera_grafo_knn(v, k):
+def gera_grafo_knn(v, k, indice):
     d_max = v #Limite das coordenadas x e y
 
     lista_vertices = []
@@ -48,15 +51,17 @@ def gera_grafo_knn(v, k):
 
     pos ={str(index):value for index,value in enumerate(lista_vertices)}
 
-    f = open("pos.txt", "w")
-    f.write(str(pos))
-    f.close()
+    nome_1 = "pos_" + str(indice) + ".txt"
+    file1 = open(nome_1, "w")
+    file1.write(str(pos))
+    file1.close()
 
-    file = open("graph.txt", "w")
-    np.savetxt('graph.txt', matrix, fmt='%.8f')
-    file.close()
+    nome_2 = "grafo_" + str(indice) + ".txt"
+    file2 = open(nome_2, "w")
+    np.savetxt(file2, matrix, fmt='%.8f')
+    file2.close()
 
-def plota_grafo(matrix, pos, rota, inicio, fim, index):
+def plota_grafo(matrix, pos, rota, inicio, fim, index, titulo):
     g = nx.Graph()
     r = nx.Graph()
     n = nx.Graph()
@@ -77,6 +82,7 @@ def plota_grafo(matrix, pos, rota, inicio, fim, index):
     fig = plt.figure(facecolor="w")
 
     ax = fig.add_subplot(111)
+    fig.suptitle(titulo)
 
     #NOTE: plota grafo
     nx.draw_networkx(g,alpha=0.6,node_size=10, with_labels=False,pos= pos, font_size=8, edge_color="b", ax=ax, width = 1)
