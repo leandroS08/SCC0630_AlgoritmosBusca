@@ -1,14 +1,14 @@
 import time
 from grafos import *
 from busca_profundidade import busca_profundidade
-from busca_largura import *
+from buscas_largura import *
 from best_first_search import best_first_search
-from busca_a_estrela import busca_a_estrela
+from buscas_a import *
 
 def main():
-    indice = 6
-    v = 2500
-    k = 7
+    indice = 1
+    v = 500
+    k = 3
 
     #gera_grafo_knn(v, k, indice)
 
@@ -23,8 +23,8 @@ def main():
     #print("\nMatriz:")
     #print (M)
 
-    v1 = 420
-    v2 = 911
+    v1 = 0
+    v2 = 138
 
     print("\nVertice origem:", v1, " || Vertice destino ", v2)
 
@@ -32,14 +32,14 @@ def main():
     #print("\nRota:")
     #print(rota)
 
-    '''ti = time.time()
+    ti = time.time()
     rota1 = busca_profundidade(M, v1, v2)
     dt = time.time() - ti
     print("\nBusca em profundidade")
     print("   > Rota:", rota1)
     print("   > Distancia: {:.4f}".format(dist_rota(M, rota1)))
     print("   > Tempo: {:.4f}".format(dt))
-    plota_grafo(M, pos, rota1, v1, v2, 1, "Busca em Profundidade")'''
+    plota_grafo(M, pos, rota1, v1, v2, 1, "Busca em Profundidade")
 
     ti = time.time()
     rota2 = busca_largura(M, v1, v2)
@@ -68,14 +68,23 @@ def main():
     print("   > Tempo: {:.4f}".format(dt))
     plota_grafo(M, pos, rota4, v1, v2, 4, "Busca Best First")
 
-    ti = time.time()
-    rota5 = busca_a_estrela(M, v1, v2, lista_vertices, pos)
+    '''ti = time.time()
+    rota5 = busca_a(M, v1, v2, lista_vertices, pos)
     dt = time.time() - ti
-    print("\nAlgoritmo A*")
+    print("\nAlgoritmo A")
     print("   > Rota:", rota5)
     print("   > Distancia: {:.4f}".format(dist_rota(M, rota5)))
     print("   > Tempo: {:.4f}".format(dt))
-    plota_grafo(M, pos, rota5, v1, v2, 5, "Busca com Algoritmo A*")
+    plota_grafo(M, pos, rota5, v1, v2, 5, "Busca com Algoritmo A")'''
+
+    ti = time.time()
+    rota6 = busca_a_estrela(M, v1, v2, lista_vertices, pos)
+    dt = time.time() - ti
+    print("\nAlgoritmo A*")
+    print("   > Rota:", rota6)
+    print("   > Distancia: {:.4f}".format(dist_rota(M, rota6)))
+    print("   > Tempo: {:.4f}".format(dt))
+    plota_grafo(M, pos, rota6, v1, v2, 6, "Busca com Algoritmo A*")
 
     plt.show()
 

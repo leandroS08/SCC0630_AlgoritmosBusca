@@ -63,3 +63,41 @@ def busca_a_estrela(matriz, inicio, fim, lista_vertices, pos):
                 pq.put((distancia, vertice))
 
     return cria_rota(sucessores, inicio, fim)
+
+def converte_10(matriz, fim, lista_vertices):
+    distancia_fim = [[] for i in range(len(matriz))]
+    for indice in range(len(matriz)):
+        distancia_fim[indice] = 10* heuristica(lista_vertices[indice], fim)
+    return distancia_fim
+
+def busca_a(matriz, inicio, fim, lista_vertices, pos):
+    f = [ 0 for i in range(len(matriz)) ]
+    g = [ 0 for i in range(len(matriz)) ]
+    h = converte(matriz, lista_vertices[fim], lista_vertices)
+    sucessores = [-1]*len(matriz)
+    lista = listaAdj(matriz)
+
+    visited = [0] * len(lista_vertices)
+    visited[inicio] = 1
+
+    pq = PriorityQueue()
+    pq.put((0, inicio))
+    while pq.empty() == 0:
+        atual = pq.get()[1]
+        #print(u, end=" ")
+        if atual == fim:
+            #print(sucessores)
+            break
+ 
+        for vertice in lista[atual]:
+            distancia = g[atual] + matriz[atual][vertice] + h[vertice]
+
+            if visited[vertice] == 0:
+                g[vertice] = g[atual] + matriz[atual][vertice]
+                f[vertice] = distancia
+
+                sucessores[vertice] = atual
+                visited[vertice] = 1
+                pq.put((distancia, vertice))
+
+    return cria_rota(sucessores, inicio, fim)
